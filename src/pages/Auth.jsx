@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '../lib/supabase'
 import './Auth.css'
 
 export default function Auth() {
@@ -35,9 +36,23 @@ export default function Auth() {
 
         try {
             if (mode === 'signin') {
-                const { error } = await signIn(formData.email, formData.password)
+                const { data, error } = await signIn(formData.email, formData.password)
                 if (error) throw error
-                navigate('/dashboard')
+
+                // Check user role for redirect
+                if (data?.user) {
+                    const { data: profile } = await supabase
+                        .from('profiles')
+                        .select('role')
+                        .eq('id', data.user.id)
+                        .single()
+
+                    if (profile?.role === 'admin') {
+                        navigate('/admin')
+                    } else {
+                        navigate('/dashboard')
+                    }
+                }
             } else if (mode === 'signup') {
                 if (formData.password !== formData.confirmPassword) {
                     throw new Error('Passwords do not match')

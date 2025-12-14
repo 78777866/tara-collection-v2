@@ -11,10 +11,12 @@ import {
     LogOut,
     Menu,
     X,
-    Settings
+    Settings,
+    Shield
 } from 'lucide-react'
 import { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
+import AccessDenied from '../AccessDenied'
 import './AdminLayout.css'
 
 const navItems = [
@@ -24,6 +26,7 @@ const navItems = [
     { icon: ShoppingCart, label: 'Orders', path: '/admin/orders' },
     { icon: Calendar, label: 'Bookings', path: '/admin/bookings' },
     { icon: Users, label: 'Users', path: '/admin/users' },
+    { icon: Shield, label: 'Team', path: '/admin/team' },
 ]
 
 export default function AdminLayout() {
@@ -32,10 +35,12 @@ export default function AdminLayout() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!loading && (!user || !isAdmin)) {
+        console.log('[AdminLayout] Checking access:', { loading, user: user?.id, isAdmin })
+        if (!loading && !user) {
+            console.log('[AdminLayout] No user, redirecting to /auth')
             navigate('/auth')
         }
-    }, [user, isAdmin, loading, navigate])
+    }, [user, loading, navigate, isAdmin])
 
     const handleSignOut = async () => {
         await signOut()
@@ -51,15 +56,8 @@ export default function AdminLayout() {
         )
     }
 
-    if (!user || !isAdmin) {
-        return (
-            <div className="admin-unauthorized">
-                <Settings size={48} />
-                <h2>Access Denied</h2>
-                <p>You don't have permission to access the admin panel.</p>
-                <a href="/" className="btn btn-secondary">Go Home</a>
-            </div>
-        )
+    if (!isAdmin) {
+        return <AccessDenied />
     }
 
     return (

@@ -1,86 +1,137 @@
-import { useState } from 'react'
-import { Search, Eye, Ban, MoreVertical } from 'lucide-react'
-
-const usersData = [
-    { id: 1, name: 'Aisyah Rahman', email: 'aisyah@email.com', orders: 5, joined: '2024-06-15', status: 'Active' },
-    { id: 2, name: 'Ahmad Faizal', email: 'ahmad@email.com', orders: 3, joined: '2024-08-22', status: 'Active' },
-    { id: 3, name: 'Priya Kumar', email: 'priya@email.com', orders: 8, joined: '2024-03-10', status: 'Active' },
-    { id: 4, name: 'Mei Ling', email: 'mei@email.com', orders: 2, joined: '2024-11-05', status: 'Disabled' },
-]
+import { useState, useEffect } from 'react'
+import { Search, Eye, Ban, Shield } from 'lucide-react'
+import { supabase } from '../../lib/supabase'
 
 export default function Users() {
-    const [searchQuery, setSearchQuery] = useState('')
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')
 
-    const filteredUsers = usersData.filter(u =>
-        u.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        u.email.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+  useEffect(() => {
+    fetchUsers()
+  }, [])
 
-    return (
-        <div className="admin-users">
-            <div className="admin-page-header">
-                <h1>Users</h1>
-            </div>
+  const fetchUsers = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-            <div className="admin-section">
-                <div className="admin-toolbar">
-                    <div className="admin-search">
-                        <Search size={18} />
-                        <input
-                            type="text"
-                            placeholder="Search users..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="input"
-                        />
-                    </div>
-                    <span className="results-count">{filteredUsers.length} users</span>
-                </div>
+      if (error) throw error
+      setUsers(data)
+    } catch (error) {
+      console.error('Error fetching users:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
-                <div className="admin-table-wrapper">
-                    <table className="admin-table">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Orders</th>
-                                <th>Joined</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredUsers.map((user) => (
-                                <tr key={user.id}>
-                                    <td>
-                                        <div className="user-cell">
-                                            <div className="user-avatar">{user.name[0]}</div>
-                                            <div>
-                                                <div><strong>{user.name}</strong></div>
-                                                <div className="text-muted">{user.email}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{user.orders} orders</td>
-                                    <td>{new Date(user.joined).toLocaleDateString()}</td>
-                                    <td>
-                                        <span className={`status-badge status-badge--${user.status.toLowerCase()}`}>
-                                            {user.status}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div className="table-actions">
-                                            <button className="table-action-btn" title="View History"><Eye size={16} /></button>
-                                            <button className="table-action-btn table-action-btn--danger" title="Disable Account"><Ban size={16} /></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  const promoteUser = async (userId) => {
+    if (!window.confirm('Are you sure you want to promote this user to Admin?')) return
 
-            <style>{`
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({ role: 'admin' })
+        .eq('id', userId)
+
+      if (error) throw error
+
+      // Refresh list
+      fetchUsers()
+      alert('User promoted to Admin successfully')
+    } catch (error) {
+      console.error('Error promoting user:', error)
+      alert('Failed to promote user')
+    }
+  }
+
+  const filteredUsers = users.filter(u =>
+    (u.full_name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+    (u.email?.toLowerCase() || '').includes(searchQuery.toLowerCase())
+  )
+
+  return (
+    <div className="admin-users">
+      <div className="admin-page-header">
+        <h1>Users</h1>
+      </div>
+
+      <div className="admin-section">
+        <div className="admin-toolbar">
+          <div className="admin-search">
+            <Search size={18} />
+            <input
+              type="text"
+              placeholder="Search users..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="input"
+            />
+          </div>
+          <span className="results-count">{filteredUsers.length} users</span>
+        </div>
+
+        <div className="admin-table-wrapper">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr><td colSpan="4" className="text-center p-4">Loading users...</td></tr>
+              ) : filteredUsers.length === 0 ? (
+                <tr><td colSpan="4" className="text-center p-4">No users found</td></tr>
+              ) : (
+                filteredUsers.map((user) => (
+                  <tr key={user.id}>
+                    <td>
+                      <div className="user-cell">
+                        <div className="user-avatar">
+                          {user.full_name?.[0] || 'U'}
+                        </div>
+                        <div>
+                          <div><strong>{user.full_name || 'Unnamed User'}</strong></div>
+                          <div className="text-muted">ID: {user.id.slice(0, 8)}...</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span className={`status-badge ${user.role === 'admin' ? 'status-badge--active' : ''}`}>
+                        {user.role}
+                      </span>
+                    </td>
+                    <td>{new Date(user.created_at).toLocaleDateString()}</td>
+                    <td>
+                      <div className="table-actions">
+                        {user.role !== 'admin' && (
+                          <button
+                            className="table-action-btn"
+                            title="Promote to Admin"
+                            onClick={() => promoteUser(user.id)}
+                          >
+                            <Shield size={16} />
+                          </button>
+                        )}
+                        <button className="table-action-btn" title="View Details"><Eye size={16} /></button>
+                        <button className="table-action-btn table-action-btn--danger" title="Disable Account"><Ban size={16} /></button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <style>{`
         .admin-toolbar {
           display: flex;
           justify-content: space-between;
@@ -165,11 +216,16 @@ export default function Users() {
           font-weight: var(--font-semibold);
           border-radius: var(--radius-full);
           text-transform: uppercase;
+          background: var(--color-surface);
+          border: 1px solid var(--color-border);
         }
 
-        .status-badge--active { background: rgba(34, 197, 94, 0.1); color: var(--color-success); }
-        .status-badge--disabled { background: rgba(239, 68, 68, 0.1); color: var(--color-error); }
+        .status-badge--active { 
+            background: rgba(34, 197, 94, 0.1); 
+            color: var(--color-success); 
+            border-color: transparent;
+        }
       `}</style>
-        </div>
-    )
+    </div>
+  )
 }

@@ -29,7 +29,9 @@ export default function DashboardLayout() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        console.log('[DashboardLayout] Checking access:', { loading, user: user?.id })
         if (!loading && !user) {
+            console.log('[DashboardLayout] No user, redirecting to /auth')
             navigate('/auth')
         }
     }, [user, loading, navigate])

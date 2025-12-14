@@ -11,6 +11,7 @@ import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Booking from './pages/Booking'
 import Auth from './pages/Auth'
+import NotFound from './pages/NotFound'
 
 // Customer Dashboard
 import DashboardLayout from './pages/dashboard/DashboardLayout'
@@ -28,6 +29,7 @@ import AdminDiscounts from './pages/admin/Discounts'
 import AdminOrders from './pages/admin/Orders'
 import AdminBookings from './pages/admin/Bookings'
 import AdminUsers from './pages/admin/Users'
+import AdminTeam from './pages/admin/Team'
 
 function App() {
   return (
@@ -88,7 +90,16 @@ function App() {
             <Route path="orders" element={<AdminOrders />} />
             <Route path="bookings" element={<AdminBookings />} />
             <Route path="users" element={<AdminUsers />} />
+            <Route path="team" element={<AdminTeam />} />
           </Route>
+          {/* Catch-all for 404 */}
+          <Route path="*" element={
+            <>
+              <Navbar />
+              <main><NotFound /></main>
+              <Footer />
+            </>
+          } />
         </Routes>
       </div>
     </AuthProvider>

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useRef } from 'react'
 import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext({})
@@ -10,21 +10,48 @@ export function AuthProvider({ children }) {
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const [isAdmin, setIsAdmin] = useState(false)
+    const initRef = useRef(false)
 
     useEffect(() => {
         // Get initial session
         const getSession = async () => {
             try {
-                const { data: { session } } = await supabase.auth.getSession()
+                if (initRef.current) return
+
+                console.log('[AuthContext] Getting session...')
+
+                // Create a timeout promise to prevent infinite loading
+                const timeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Session fetch timeout')), 4000)
+                )
+
+                const { data: { session } } = await Promise.race([
+                    supabase.auth.getSession(),
+                    timeoutPromise
+                ])
+
+                if (initRef.current) return
+
+                console.log('[AuthContext] Session found:', session?.user?.id)
                 setUser(session?.user ?? null)
 
                 if (session?.user) {
                     await fetchProfile(session.user.id)
                 }
             } catch (error) {
+                if (initRef.current) return
+
                 console.error('Error getting session:', error)
+                if (error.message === 'Session fetch timeout') {
+                    console.warn('[AuthContext] Session fetch timed out')
+                }
+                setUser(null)
+                setProfile(null)
             } finally {
-                setLoading(false)
+                if (!initRef.current) {
+                    setLoading(false)
+                    console.log('[AuthContext] Loading set to false (from getSession)')
+                }
             }
         }
 
@@ -33,16 +60,21 @@ export function AuthProvider({ children }) {
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
             async (event, session) => {
+                console.log('[AuthContext] Auth change:', event)
+                initRef.current = true
+
                 setUser(session?.user ?? null)
 
                 if (session?.user) {
                     await fetchProfile(session.user.id)
                 } else {
+                    console.log('[AuthContext] No session, clearing profile')
                     setProfile(null)
                     setIsAdmin(false)
                 }
 
                 setLoading(false)
+                console.log('[AuthContext] Loading set to false (from listener)')
             }
         )
 
@@ -51,11 +83,21 @@ export function AuthProvider({ children }) {
 
     const fetchProfile = async (userId) => {
         try {
-            const { data, error } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', userId)
-                .single()
+            console.log('[AuthContext] Fetching profile for:', userId)
+
+            // Timeout for profile fetch
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Profile fetch timeout')), 4000)
+            )
+
+            const { data, error } = await Promise.race([
+                supabase
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', userId)
+                    .single(),
+                timeoutPromise
+            ])
 
             if (error && error.code !== 'PGRST116') {
                 console.error('Error fetching profile:', error)
@@ -64,8 +106,12 @@ export function AuthProvider({ children }) {
 
             setProfile(data)
             setIsAdmin(data?.role === 'admin')
+            console.log('[AuthContext] Profile fetched:', data?.role)
         } catch (error) {
             console.error('Error fetching profile:', error)
+            if (error.message === 'Profile fetch timeout') {
+                console.warn('[AuthContext] Profile fetch timed out')
+            }
         }
     }
 
