@@ -1,0 +1,175 @@
+import { useState } from 'react'
+import { Search, Eye, Ban, MoreVertical } from 'lucide-react'
+
+const usersData = [
+    { id: 1, name: 'Aisyah Rahman', email: 'aisyah@email.com', orders: 5, joined: '2024-06-15', status: 'Active' },
+    { id: 2, name: 'Ahmad Faizal', email: 'ahmad@email.com', orders: 3, joined: '2024-08-22', status: 'Active' },
+    { id: 3, name: 'Priya Kumar', email: 'priya@email.com', orders: 8, joined: '2024-03-10', status: 'Active' },
+    { id: 4, name: 'Mei Ling', email: 'mei@email.com', orders: 2, joined: '2024-11-05', status: 'Disabled' },
+]
+
+export default function Users() {
+    const [searchQuery, setSearchQuery] = useState('')
+
+    const filteredUsers = usersData.filter(u =>
+        u.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        u.email.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+
+    return (
+        <div className="admin-users">
+            <div className="admin-page-header">
+                <h1>Users</h1>
+            </div>
+
+            <div className="admin-section">
+                <div className="admin-toolbar">
+                    <div className="admin-search">
+                        <Search size={18} />
+                        <input
+                            type="text"
+                            placeholder="Search users..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="input"
+                        />
+                    </div>
+                    <span className="results-count">{filteredUsers.length} users</span>
+                </div>
+
+                <div className="admin-table-wrapper">
+                    <table className="admin-table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Orders</th>
+                                <th>Joined</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredUsers.map((user) => (
+                                <tr key={user.id}>
+                                    <td>
+                                        <div className="user-cell">
+                                            <div className="user-avatar">{user.name[0]}</div>
+                                            <div>
+                                                <div><strong>{user.name}</strong></div>
+                                                <div className="text-muted">{user.email}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{user.orders} orders</td>
+                                    <td>{new Date(user.joined).toLocaleDateString()}</td>
+                                    <td>
+                                        <span className={`status-badge status-badge--${user.status.toLowerCase()}`}>
+                                            {user.status}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div className="table-actions">
+                                            <button className="table-action-btn" title="View History"><Eye size={16} /></button>
+                                            <button className="table-action-btn table-action-btn--danger" title="Disable Account"><Ban size={16} /></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <style>{`
+        .admin-toolbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: var(--space-5);
+        }
+
+        .admin-search {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+
+        .admin-search svg {
+          position: absolute;
+          left: var(--space-3);
+          color: var(--color-text-muted);
+        }
+
+        .admin-search .input {
+          padding-left: var(--space-10);
+          max-width: 300px;
+        }
+
+        .results-count {
+          font-size: var(--text-sm);
+          color: var(--color-text-secondary);
+        }
+
+        .user-cell {
+          display: flex;
+          align-items: center;
+          gap: var(--space-3);
+        }
+
+        .user-avatar {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
+          font-weight: var(--font-bold);
+          border-radius: var(--radius-full);
+        }
+
+        .text-muted {
+          font-size: var(--text-xs);
+          color: var(--color-text-muted);
+        }
+
+        .table-actions {
+          display: flex;
+          gap: var(--space-2);
+        }
+
+        .table-action-btn {
+          padding: var(--space-2);
+          background: var(--color-accent-light);
+          border: none;
+          border-radius: var(--radius-md);
+          color: var(--color-text-secondary);
+          cursor: pointer;
+          transition: all var(--transition-fast);
+        }
+
+        .table-action-btn:hover {
+          background: var(--color-accent);
+          color: var(--color-primary);
+        }
+
+        .table-action-btn--danger:hover {
+          background: rgba(239, 68, 68, 0.1);
+          color: var(--color-error);
+        }
+
+        .status-badge {
+          display: inline-block;
+          padding: var(--space-1) var(--space-3);
+          font-size: var(--text-xs);
+          font-weight: var(--font-semibold);
+          border-radius: var(--radius-full);
+          text-transform: uppercase;
+        }
+
+        .status-badge--active { background: rgba(34, 197, 94, 0.1); color: var(--color-success); }
+        .status-badge--disabled { background: rgba(239, 68, 68, 0.1); color: var(--color-error); }
+      `}</style>
+        </div>
+    )
+}

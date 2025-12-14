@@ -1,0 +1,503 @@
+.product-detail {
+    padding-top: 100px;
+    padding-bottom: var(--space-16);
+    min-height: 100vh;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+    font-size: var(--text-sm);
+}
+
+.breadcrumb a {
+    color: var(--color-text-secondary);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.breadcrumb span {
+    color: var(--color-text-primary);
+    font-weight: var(--font-medium);
+}
+
+.breadcrumb svg {
+    color: var(--color-text-muted);
+}
+
+/* Layout */
+.product-detail__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+}
+
+/* Gallery */
+.product-gallery {
+    position: sticky;
+    top: 100px;
+}
+
+.product-gallery__main {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: var(--space-4);
+}
+
+.product-gallery__main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-gallery__badge {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.product-gallery__thumbs {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.product-gallery__thumb {
+    width: 80px;
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+    background: none;
+    padding: 0;
+}
+
+.product-gallery__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-gallery__thumb--active {
+    border-color: var(--color-secondary);
+}
+
+/* Customizer */
+.product-customizer {
+    padding: var(--space-8);
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-customizer__header {
+    position: relative;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.product-customizer__category {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-secondary);
+}
+
+.product-customizer__title {
+    font-size: var(--text-3xl);
+    margin: var(--space-2) 0 var(--space-4);
+}
+
+.product-customizer__description {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    max-width: 500px;
+}
+
+.product-customizer__actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: var(--space-2);
+}
+
+.action-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-light);
+    border: none;
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.action-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* Progress Steps */
+.customizer-steps {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-8);
+}
+
+.customizer-step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex: 1;
+}
+
+.customizer-step__icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+}
+
+.customizer-step--active .customizer-step__icon {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+
+.customizer-step--current .customizer-step__icon {
+    background: var(--color-secondary);
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-gold);
+}
+
+.customizer-step__name {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-text-secondary);
+}
+
+.customizer-step--active .customizer-step__name {
+    color: var(--color-text-primary);
+}
+
+.customizer-step__line {
+    flex: 1;
+    height: 2px;
+    background: var(--color-accent);
+    margin: 0 var(--space-2);
+}
+
+.customizer-step--active .customizer-step__line {
+    background: var(--color-primary);
+}
+
+/* Step Content */
+.customizer-content {
+    min-height: 300px;
+    margin-bottom: var(--space-6);
+}
+
+.customizer-section h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+}
+
+.customizer-section>p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+/* Fabric Grid */
+.fabric-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+}
+
+.fabric-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-background);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.fabric-option:hover {
+    border-color: var(--color-accent-dark);
+}
+
+.fabric-option--selected {
+    border-color: var(--color-secondary);
+    background: var(--color-accent-light);
+}
+
+.fabric-option__swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.fabric-option__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.fabric-option__name {
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+}
+
+.fabric-option__price {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.fabric-option__check {
+    color: var(--color-secondary);
+}
+
+/* Style Grid */
+.style-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.style-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5);
+    background: var(--color-background);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.style-option:hover {
+    border-color: var(--color-accent-dark);
+}
+
+.style-option--selected {
+    border-color: var(--color-secondary);
+    background: var(--color-accent-light);
+}
+
+.style-option__content h4 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-1);
+}
+
+.style-option__content p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.style-option__check {
+    color: var(--color-secondary);
+}
+
+/* Measurements Form */
+.measurements-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.measurement-field label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-2);
+    text-transform: capitalize;
+}
+
+.measurement-input {
+    position: relative;
+}
+
+.measurement-input .input {
+    padding-right: var(--space-10);
+}
+
+.measurement-unit {
+    position: absolute;
+    right: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.measurement-help {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-secondary);
+}
+
+/* Order Summary */
+.order-summary {
+    padding: var(--space-6);
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-3) 0;
+    font-size: var(--text-sm);
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.express-option {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.express-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    cursor: pointer;
+}
+
+.express-toggle input {
+    display: none;
+}
+
+.express-toggle__slider {
+    width: 48px;
+    height: 24px;
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+    position: relative;
+    transition: background var(--transition-fast);
+}
+
+.express-toggle__slider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: var(--radius-full);
+    transition: transform var(--transition-fast);
+}
+
+.express-toggle input:checked+.express-toggle__slider {
+    background: var(--color-secondary);
+}
+
+.express-toggle input:checked+.express-toggle__slider::after {
+    transform: translateX(24px);
+}
+
+.express-toggle__content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.express-toggle__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--font-medium);
+}
+
+.express-toggle__price {
+    font-weight: var(--font-semibold);
+    color: var(--color-secondary);
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--space-4);
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+}
+
+/* Navigation */
+.customizer-nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-accent);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .product-detail__layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+    }
+
+    .product-gallery {
+        position: static;
+    }
+}
+
+@media (max-width: 640px) {
+    .product-customizer {
+        padding: var(--space-4);
+    }
+
+    .customizer-step__name {
+        display: none;
+    }
+
+    .fabric-grid,
+    .measurements-form {
+        grid-template-columns: 1fr;
+    }
+
+    .customizer-nav {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .customizer-nav .btn {
+        width: 100%;
+    }
+}
