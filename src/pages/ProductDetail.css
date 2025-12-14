@@ -479,25 +479,150 @@
 }
 
 @media (max-width: 640px) {
+    .product-detail {
+        padding-top: 80px;
+        padding-bottom: var(--space-8);
+    }
+
+    .breadcrumb {
+        margin-bottom: var(--space-4);
+        font-size: var(--text-xs);
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: var(--space-2);
+    }
+
+    .product-gallery__main {
+        border-radius: var(--radius-lg);
+        margin-bottom: var(--space-3);
+    }
+
+    .product-gallery__thumbs {
+        gap: var(--space-2);
+        overflow-x: auto;
+        padding-bottom: var(--space-2);
+    }
+
+    .product-gallery__thumb {
+        width: 60px;
+        flex-shrink: 0;
+    }
+
     .product-customizer {
         padding: var(--space-4);
+        border-radius: var(--radius-lg);
+    }
+
+    .product-customizer__title {
+        font-size: var(--text-2xl);
+    }
+
+    .product-customizer__description {
+        font-size: var(--text-sm);
+    }
+
+    .product-customizer__actions {
+        position: static;
+        margin-top: var(--space-4);
+        justify-content: flex-start;
+    }
+
+    /* Steps indicator for mobile */
+    .customizer-steps {
+        margin-bottom: var(--space-6);
+        overflow-x: auto;
+        padding-bottom: var(--space-2);
+    }
+
+    .customizer-step__icon {
+        width: 36px;
+        height: 36px;
+        font-size: var(--text-xs);
     }
 
     .customizer-step__name {
         display: none;
     }
 
-    .fabric-grid,
-    .measurements-form {
-        grid-template-columns: 1fr;
+    .customizer-step__line {
+        min-width: 20px;
     }
 
+    /* Fabric options */
+    .fabric-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+    }
+
+    .fabric-option {
+        padding: var(--space-3);
+        min-height: 64px;
+    }
+
+    .fabric-option__swatch {
+        width: 40px;
+        height: 40px;
+    }
+
+    .fabric-option__name {
+        font-size: var(--text-sm);
+    }
+
+    /* Style options */
+    .style-option {
+        padding: var(--space-4);
+    }
+
+    .style-option__content h4 {
+        font-size: var(--text-sm);
+    }
+
+    .style-option__content p {
+        font-size: var(--text-xs);
+    }
+
+    /* Measurements form */
+    .measurements-form {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .measurement-field label {
+        font-size: var(--text-xs);
+    }
+
+    .measurement-input .input {
+        min-height: 48px;
+    }
+
+    /* Order summary */
+    .order-summary {
+        padding: var(--space-4);
+    }
+
+    .summary-item {
+        font-size: var(--text-xs);
+    }
+
+    .summary-total {
+        font-size: var(--text-lg);
+    }
+
+    /* Navigation */
     .customizer-nav {
         flex-direction: column;
         gap: var(--space-3);
+        padding-top: var(--space-4);
     }
 
     .customizer-nav .btn {
         width: 100%;
+        justify-content: center;
+    }
+
+    /* Reorder buttons on mobile - primary action first */
+    .customizer-nav .btn-primary,
+    .customizer-nav .btn-secondary {
+        order: -1;
     }
 }

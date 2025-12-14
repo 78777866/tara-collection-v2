@@ -392,32 +392,150 @@ textarea.input {
 }
 
 @media (max-width: 640px) {
+    .booking-page {
+        padding-top: 70px;
+    }
+
+    .booking-header {
+        padding: var(--space-10) 0;
+    }
+
+    .booking-header h1 {
+        font-size: var(--text-2xl);
+    }
+
+    .booking-header p {
+        font-size: var(--text-base);
+    }
+
+    .booking-content {
+        padding: var(--space-4);
+    }
+
     .booking-main {
         padding: var(--space-5);
+        border-radius: var(--radius-lg);
+    }
+
+    /* Progress steps - icons only on mobile */
+    .booking-progress {
+        justify-content: space-around;
+        margin-bottom: var(--space-6);
+        padding-bottom: var(--space-4);
+    }
+
+    .booking-progress__icon {
+        width: 36px;
+        height: 36px;
     }
 
     .booking-progress__step span {
         display: none;
     }
 
-    .time-slots {
-        grid-template-columns: repeat(2, 1fr);
+    /* Step content */
+    .booking-step h2 {
+        font-size: var(--text-xl);
     }
 
+    .booking-step>p {
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-6);
+    }
+
+    /* Appointment types */
+    .appointment-types {
+        gap: var(--space-3);
+    }
+
+    .appointment-type {
+        padding: var(--space-4);
+        gap: var(--space-3);
+    }
+
+    .appointment-type__icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .appointment-type__content h3 {
+        font-size: var(--text-base);
+    }
+
+    /* Time slots - 3 columns on mobile */
+    .time-slots {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-2);
+    }
+
+    .time-slot {
+        padding: var(--space-3);
+        font-size: var(--text-xs);
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Form */
     .form-row {
         grid-template-columns: 1fr;
+        gap: var(--space-4);
     }
 
+    .form-group label {
+        font-size: var(--text-sm);
+    }
+
+    .form-group .input {
+        min-height: 48px;
+    }
+
+    textarea.input {
+        min-height: 80px;
+    }
+
+    /* Sidebar */
     .booking-sidebar {
         flex-direction: column;
+        gap: var(--space-3);
     }
 
+    .booking-summary,
+    .booking-contact {
+        padding: var(--space-4);
+    }
+
+    .booking-summary h3,
+    .booking-contact h3 {
+        font-size: var(--text-base);
+    }
+
+    /* Navigation */
     .booking-nav {
         flex-direction: column-reverse;
         gap: var(--space-3);
+        padding-top: var(--space-4);
+        margin-top: var(--space-4);
     }
 
     .booking-nav .btn {
         width: 100%;
+        justify-content: center;
+    }
+
+    /* Success state */
+    .booking-success {
+        margin: var(--space-8) var(--space-4);
+        padding: var(--space-8);
+    }
+
+    .booking-success__icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .booking-success h2 {
+        font-size: var(--text-xl);
     }
 }

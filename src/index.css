@@ -6,76 +6,102 @@
 /* CSS Custom Properties (Design Tokens) */
 :root {
   /* Brand Colors */
-  --color-primary: #0A3200;           /* Deep Emerald Green */
+  --color-primary: #0A3200;
+  /* Deep Emerald Green */
   --color-primary-light: #1a5a10;
   --color-primary-dark: #051900;
-  
-  --color-secondary: #C5A059;         /* Muted Gold */
+
+  --color-secondary: #C5A059;
+  /* Muted Gold */
   --color-secondary-light: #d4b574;
   --color-secondary-dark: #a88942;
-  
-  --color-accent: #E8DCC4;            /* Champagne/Cream */
+
+  --color-accent: #E8DCC4;
+  /* Champagne/Cream */
   --color-accent-light: #f5f0e6;
   --color-accent-dark: #d4c5a8;
-  
+
   /* Neutral Colors */
-  --color-background: #FAFAF5;        /* Warm White */
+  --color-background: #FAFAF5;
+  /* Warm White */
   --color-surface: #FFFFFF;
   --color-surface-elevated: #FFFFFF;
-  
+
   --color-text-primary: #1A1A1A;
   --color-text-secondary: #5A5A5A;
   --color-text-muted: #8A8A8A;
   --color-text-inverse: #FFFFFF;
-  
+
   /* Status Colors */
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-error: #EF4444;
   --color-info: #3B82F6;
-  
+
   /* Typography */
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
-  
+
   /* Font Sizes */
-  --text-xs: 0.75rem;      /* 12px */
-  --text-sm: 0.875rem;     /* 14px */
-  --text-base: 1rem;       /* 16px */
-  --text-lg: 1.125rem;     /* 18px */
-  --text-xl: 1.25rem;      /* 20px */
-  --text-2xl: 1.5rem;      /* 24px */
-  --text-3xl: 1.875rem;    /* 30px */
-  --text-4xl: 2.25rem;     /* 36px */
-  --text-5xl: 3rem;        /* 48px */
-  --text-6xl: 3.75rem;     /* 60px */
-  
+  --text-xs: 0.75rem;
+  /* 12px */
+  --text-sm: 0.875rem;
+  /* 14px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 1.875rem;
+  /* 30px */
+  --text-4xl: 2.25rem;
+  /* 36px */
+  --text-5xl: 3rem;
+  /* 48px */
+  --text-6xl: 3.75rem;
+  /* 60px */
+
   /* Font Weights */
   --font-light: 300;
   --font-normal: 400;
   --font-medium: 500;
   --font-semibold: 600;
   --font-bold: 700;
-  
+
   /* Line Heights */
   --leading-tight: 1.25;
   --leading-normal: 1.5;
   --leading-relaxed: 1.75;
-  
+
   /* Spacing Scale */
-  --space-1: 0.25rem;      /* 4px */
-  --space-2: 0.5rem;       /* 8px */
-  --space-3: 0.75rem;      /* 12px */
-  --space-4: 1rem;         /* 16px */
-  --space-5: 1.25rem;      /* 20px */
-  --space-6: 1.5rem;       /* 24px */
-  --space-8: 2rem;         /* 32px */
-  --space-10: 2.5rem;      /* 40px */
-  --space-12: 3rem;        /* 48px */
-  --space-16: 4rem;        /* 64px */
-  --space-20: 5rem;        /* 80px */
-  --space-24: 6rem;        /* 96px */
-  
+  --space-1: 0.25rem;
+  /* 4px */
+  --space-2: 0.5rem;
+  /* 8px */
+  --space-3: 0.75rem;
+  /* 12px */
+  --space-4: 1rem;
+  /* 16px */
+  --space-5: 1.25rem;
+  /* 20px */
+  --space-6: 1.5rem;
+  /* 24px */
+  --space-8: 2rem;
+  /* 32px */
+  --space-10: 2.5rem;
+  /* 40px */
+  --space-12: 3rem;
+  /* 48px */
+  --space-16: 4rem;
+  /* 64px */
+  --space-20: 5rem;
+  /* 80px */
+  --space-24: 6rem;
+  /* 96px */
+
   /* Border Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -83,7 +109,7 @@
   --radius-xl: 16px;
   --radius-2xl: 24px;
   --radius-full: 9999px;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -91,13 +117,13 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --shadow-gold: 0 4px 20px rgba(197, 160, 89, 0.3);
-  
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
   --transition-slow: 350ms ease;
   --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  
+
   /* Z-index Scale */
   --z-base: 0;
   --z-dropdown: 100;
@@ -107,7 +133,7 @@
   --z-modal: 500;
   --z-popover: 600;
   --z-tooltip: 700;
-  
+
   /* Container */
   --container-max: 1280px;
   --container-padding: var(--space-4);
@@ -146,19 +172,41 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-semibold);
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
 }
 
-h1 { font-size: var(--text-5xl); }
-h2 { font-size: var(--text-4xl); }
-h3 { font-size: var(--text-3xl); }
-h4 { font-size: var(--text-2xl); }
-h5 { font-size: var(--text-xl); }
-h6 { font-size: var(--text-lg); }
+h1 {
+  font-size: var(--text-5xl);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+}
+
+h3 {
+  font-size: var(--text-3xl);
+}
+
+h4 {
+  font-size: var(--text-2xl);
+}
+
+h5 {
+  font-size: var(--text-xl);
+}
+
+h6 {
+  font-size: var(--text-lg);
+}
 
 p {
   color: var(--color-text-secondary);
@@ -239,8 +287,13 @@ a:hover {
 
 /* Animation Keyframes */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInUp {
@@ -248,6 +301,7 @@ a:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -259,6 +313,7 @@ a:hover {
     opacity: 0;
     transform: translateX(20px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -266,18 +321,35 @@ a:hover {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Animation Classes */
@@ -303,12 +375,10 @@ a:hover {
 
 /* Skeleton Loading */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--color-accent) 25%,
-    var(--color-accent-light) 50%,
-    var(--color-accent) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--color-accent) 25%,
+      var(--color-accent-light) 50%,
+      var(--color-accent) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-md);
@@ -459,19 +529,97 @@ a:hover {
   :root {
     --container-padding: var(--space-4);
   }
-  
-  h1 { font-size: var(--text-3xl); }
-  h2 { font-size: var(--text-2xl); }
-  h3 { font-size: var(--text-xl); }
+
+  html {
+    font-size: 15px;
+    /* Slightly smaller base for mobile */
+  }
+
+  h1 {
+    font-size: var(--text-3xl);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+  }
+
+  /* Improve button touch targets */
+  .btn {
+    min-height: 48px;
+    padding: var(--space-4) var(--space-6);
+  }
+
+  .btn-lg {
+    min-height: 56px;
+    padding: var(--space-5) var(--space-8);
+    font-size: var(--text-base);
+  }
+
+  .btn-sm {
+    min-height: 40px;
+    padding: var(--space-3) var(--space-5);
+  }
+
+  /* Improve form input touch targets */
+  .input {
+    min-height: 48px;
+    padding: var(--space-4);
+    font-size: 16px;
+    /* Prevents iOS zoom on focus */
+  }
+
+  /* Cards with reduced hover effect on mobile */
+  .card:hover {
+    transform: none;
+  }
+
+  .card:active {
+    transform: scale(0.98);
+  }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
-  h1 { font-size: var(--text-4xl); }
+  h1 {
+    font-size: var(--text-4xl);
+  }
 }
 
 @media (min-width: 1025px) {
   :root {
     --container-padding: var(--space-6);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover {
+    transform: none;
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+
+  .card:hover {
+    transform: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  a:hover {
+    color: inherit;
+  }
+}
+
+/* Safe area support for notched devices */
+@supports (padding: max(0px)) {
+  .container {
+    padding-left: max(var(--container-padding), env(safe-area-inset-left));
+    padding-right: max(var(--container-padding), env(safe-area-inset-right));
   }
 }
 
@@ -492,4 +640,16 @@ a:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-secondary-dark);
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
