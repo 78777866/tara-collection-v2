@@ -449,14 +449,7 @@
     }
 
     .hero__stats {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        margin-top: var(--space-8);
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
+        display: none;
     }
 
     .hero__stat-value {
