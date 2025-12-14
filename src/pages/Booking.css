@@ -393,40 +393,44 @@ textarea.input {
 
 @media (max-width: 640px) {
     .booking-page {
-        padding-top: 70px;
+        padding-top: 64px;
     }
 
     .booking-header {
-        padding: var(--space-10) 0;
+        padding: var(--space-12) 0;
     }
 
     .booking-header h1 {
-        font-size: var(--text-2xl);
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-3);
     }
 
     .booking-header p {
         font-size: var(--text-base);
+        line-height: 1.6;
     }
 
     .booking-content {
-        padding: var(--space-4);
+        padding: var(--space-6) 0;
+        gap: var(--space-6);
     }
 
     .booking-main {
-        padding: var(--space-5);
+        padding: var(--space-6);
         border-radius: var(--radius-lg);
     }
 
     /* Progress steps - icons only on mobile */
     .booking-progress {
         justify-content: space-around;
-        margin-bottom: var(--space-6);
-        padding-bottom: var(--space-4);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-5);
     }
 
     .booking-progress__icon {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
+        font-size: var(--text-base);
     }
 
     .booking-progress__step span {
@@ -436,48 +440,60 @@ textarea.input {
     /* Step content */
     .booking-step h2 {
         font-size: var(--text-xl);
+        margin-bottom: var(--space-3);
     }
 
     .booking-step>p {
         font-size: var(--text-sm);
         margin-bottom: var(--space-6);
+        line-height: 1.6;
     }
 
     /* Appointment types */
     .appointment-types {
-        gap: var(--space-3);
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
     }
 
     .appointment-type {
-        padding: var(--space-4);
-        gap: var(--space-3);
+        padding: var(--space-5);
+        gap: var(--space-4);
     }
 
     .appointment-type__icon {
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
     }
 
     .appointment-type__content h3 {
         font-size: var(--text-base);
+        margin-bottom: var(--space-2);
+    }
+
+    .appointment-type__content p {
+        line-height: 1.5;
     }
 
     /* Time slots - 3 columns on mobile */
     .time-slots {
         grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-2);
+        gap: var(--space-3);
     }
 
     .time-slot {
         padding: var(--space-3);
-        font-size: var(--text-xs);
-        min-height: 44px;
+        font-size: var(--text-sm);
+        min-height: 48px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     /* Form */
+    .booking-form {
+        gap: var(--space-4);
+    }
+
     .form-row {
         grid-template-columns: 1fr;
         gap: var(--space-4);
@@ -485,6 +501,7 @@ textarea.input {
 
     .form-group label {
         font-size: var(--text-sm);
+        margin-bottom: var(--space-3);
     }
 
     .form-group .input {
@@ -492,31 +509,36 @@ textarea.input {
     }
 
     textarea.input {
-        min-height: 80px;
+        min-height: 100px;
     }
 
     /* Sidebar */
     .booking-sidebar {
         flex-direction: column;
-        gap: var(--space-3);
+        gap: var(--space-4);
     }
 
     .booking-summary,
     .booking-contact {
-        padding: var(--space-4);
+        padding: var(--space-5);
     }
 
     .booking-summary h3,
     .booking-contact h3 {
         font-size: var(--text-base);
+        margin-bottom: var(--space-4);
+    }
+
+    .summary-section {
+        margin-bottom: var(--space-4);
     }
 
     /* Navigation */
     .booking-nav {
         flex-direction: column-reverse;
-        gap: var(--space-3);
-        padding-top: var(--space-4);
-        margin-top: var(--space-4);
+        gap: var(--space-4);
+        padding-top: var(--space-5);
+        margin-top: var(--space-5);
     }
 
     .booking-nav .btn {
@@ -526,16 +548,28 @@ textarea.input {
 
     /* Success state */
     .booking-success {
-        margin: var(--space-8) var(--space-4);
+        margin: var(--space-10) 0;
         padding: var(--space-8);
     }
 
     .booking-success__icon {
-        width: 64px;
-        height: 64px;
+        width: 72px;
+        height: 72px;
+        margin-bottom: var(--space-5);
     }
 
     .booking-success h2 {
-        font-size: var(--text-xl);
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-4);
+    }
+
+    .booking-success>p {
+        margin-bottom: var(--space-6);
+        line-height: 1.6;
+    }
+
+    .booking-success__details {
+        padding: var(--space-5);
+        margin-bottom: var(--space-6);
     }
 }
